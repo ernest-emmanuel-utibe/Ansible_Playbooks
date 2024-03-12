@@ -22,9 +22,9 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
          ec2_instance:
            count: 1
            instance_type: t2.micro
-           image: ami-12345678  # Replace with your desired AMI ID
-           key_name: my-keypair
-           security_group: my-security-group
+           image: {YOUR AMI} # Replace with your desired AMI ID
+           key_name: {YOUR KEYPAIR}
+           security_group: {YOUR SECURITY GROUP}
            wait: yes
          register: ec2_result
    ```
@@ -52,7 +52,7 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
            module: ec2
            args:
              instance_ids:
-               - "i-1234567890abcdef0"  # Replace with your instance ID
+               - "{YOUR INSTANCE ID}"  # Replace with your instance ID
              state: stopped
          register: stopped_instances
    ```
@@ -80,7 +80,7 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
            module: ec2
            args:
              instance_ids:
-               - "i-1234567890abcdef0"  # Replace with your instance ID
+               - "{YOUR INSTANCE ID}"  # Replace with your instance ID
              state: started
          register: started_instances
    ```
@@ -108,7 +108,7 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
            module: ec2
            args:
              instance_ids:
-               - "i-1234567890abcdef0"  # Replace with your instance ID
+               - "{YOUR INSTANCE ID}"  # Replace with your instance ID
              state: absent
          register: terminated_instances
    ```
