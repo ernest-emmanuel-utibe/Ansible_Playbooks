@@ -1,4 +1,4 @@
-Certainly! Below are step-by-step instructions for launching, stopping, starting, and terminating AWS EC2 instances using Ansible:
+Below are step-by-step instructions for launching, stopping, starting, and terminating AWS EC2 instances using Ansible:
 
 1. **Launching EC2 Instances:**
 
