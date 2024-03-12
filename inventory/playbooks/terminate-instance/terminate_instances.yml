@@ -1,0 +1,14 @@
+---
+- name: Terminate EC2 instances
+  hosts: localhost
+  gather_facts: no
+  vars:
+    instance_ids:
+      - "i-033a813eba46a021c"
+      # Add more instance IDs as needed
+  tasks:
+    - name: Terminate EC2 instances
+      ec2_instance:
+        state: absent
+        instance_ids: "{{ instance_ids }}"
+      register: terminated_instances

@@ -1,0 +1,47 @@
+---
+- name: Stop ec2 instances
+  hosts: localhost
+  gather_facts: false
+  vars:
+    region: us-east-2  # Corrected region value
+    instance_ids:
+      - "i-033a813eba46a021c"
+      - "i-0710aad6a911d69e1"
+  tasks:
+    - name: Stop the ec2 instances 
+      ec2_instance:
+        instance_ids: "{{ instance_ids }}"
+        region: "{{ region }}"
+        state: stopped
+        # vpc_subnet_id: subnet-01ccedd4a075b63c0
+        # assign_public_ip: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ---
+# - name: Stop EC2 instances
+#   hosts: webserver
+#   gather_facts: no
+#   tasks:
+#     - name: Stop EC2 instances 
+#       amazon.aws.ec2_instance:
+#         region: "us-east-2"
+#         instance_ids:
+#           - "i-033a813eba46a021c"
+#         state: stopped
+#       register: stopped_instances    

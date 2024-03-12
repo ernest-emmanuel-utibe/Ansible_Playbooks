@@ -1,0 +1,21 @@
+---
+  - name: Provisioning EC2 instances using Ansible
+    hosts: localhost
+    connection: local
+    gather_facts: False
+    tags: provisioning
+
+    vars:  
+      keypair: TestingDeployingInstancesKeyPair
+      instance_type: t2.micro
+      image: "ami-0f5daaa3a7fb3378b"
+      wait: yes
+      group: webserver
+      count: 1
+      region: us-east-2
+      security_group: ansible-SG
+
+    roles:
+      - security_group_setup
+      - ec2_instance_launch
+      - ec2_instance_tagging
