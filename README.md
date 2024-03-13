@@ -10,6 +10,7 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
 
    **Step 2: Write the Ansible playbook:**
 
+
    ``` yaml
    # launch_ec2_instances.yml
    
@@ -56,6 +57,7 @@ Below are step-by-step instructions for launching, stopping, starting, and termi
              state: stopped
          register: stopped_instances
    ```
+
 
    **Step 2: Run the playbook:**
    
