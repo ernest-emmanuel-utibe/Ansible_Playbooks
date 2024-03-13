@@ -1,0 +1,6 @@
+---
+  - name: Create ECR Repository
+      # Task to create ECR repository
+    ec2_ecr:
+      name: my-ecr-repo
+      region: us-east-1

@@ -16,6 +16,16 @@
       security_group: ansible-SG
 
     roles:
-      - security_group_setup
+      - api_gateway
       - ec2_instance_launch
       - ec2_instance_tagging
+      - ecr_reposiroty
+      - ecs_cluster
+      - lambda_function
+      - rds_instance
+      - route53_record
+      - s3_bucket
+      - security_group_setup
+      - subnets
+      - vpc     
+

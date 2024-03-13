@@ -1,0 +1,12 @@
+---
+  - name: Create AWS Resources
+    hosts: localhost
+    gather_facts: no
+    tasks:
+      - name: Create VPC
+        # Task to create VPC
+      ec2_vpc:
+        state: present
+        cidr_block: 10.0.0.0/16
+        region: us-east-1
+      register: vpc

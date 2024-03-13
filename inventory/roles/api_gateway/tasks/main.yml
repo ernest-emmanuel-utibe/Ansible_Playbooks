@@ -1,0 +1,7 @@
+---
+  - name: Create API Gateway
+      # Task to create API Gateway
+    ec2_apigateway:
+      name: my-api-gateway
+      region: us-east-1
+      endpoint_type: edge

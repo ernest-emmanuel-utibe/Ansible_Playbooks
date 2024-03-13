@@ -1,0 +1,14 @@
+---
+  - name: Create RDS instance
+      # Task to create RDS instance
+    ec2_rds:
+      command: create
+      region: us-east-1
+      instance_name: my-db-instance
+      db_instance_identifier: my-db-instance
+      allocated_storage: 20
+      instance_class: db.t2.micro
+      engine: mysql
+      admin_username: admin
+      admin_password: admin123
+      multi_az: no
