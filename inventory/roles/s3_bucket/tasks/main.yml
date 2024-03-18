@@ -1,6 +1,0 @@
----
-  - name: Create S3 Bucket
-      # Task to create S3 bucket
-    ec2_s3:
-      name: my-s3-bucket
-      region: us-east-1

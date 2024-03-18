@@ -5,5 +5,5 @@
       region: "{{ region }}"
       state: present
       tags:
-        Name: Testing-Deploying-Instances-Using-Ansible-1
+        Name: Testing-Launching-Instances-Using-Ansible
     with_items: "{{ ec2_result.instances }}"

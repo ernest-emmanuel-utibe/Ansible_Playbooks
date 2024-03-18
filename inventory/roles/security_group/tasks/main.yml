@@ -1,4 +1,4 @@
-- name: Create my security group
+- name: Create security group
   ec2_group:
     name: "{{ security_group }}"
     description: Security Group for webserver Servers

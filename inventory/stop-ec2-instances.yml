@@ -3,10 +3,9 @@
   hosts: localhost
   gather_facts: false
   vars:
-    region: us-east-2  # Corrected region value
+    region: eu-central-1  # Corrected region value
     instance_ids:
-      - "i-033a813eba46a021c"
-      - "i-0710aad6a911d69e1"
+      - "i-099b70003f795fe2d"
   tasks:
     - name: Stop the ec2 instances 
       ec2_instance:

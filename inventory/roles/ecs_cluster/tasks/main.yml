@@ -1,6 +1,0 @@
----
-  - name: Create ECS Cluster
-      # Task to create ECS cluster
-    ec2_ecs_cluster:
-      name: my-ecs-cluster
-      region: us-east-1

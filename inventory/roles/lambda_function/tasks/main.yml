@@ -1,9 +1,0 @@
----
-  - name: Create Lambda Function
-      # Task to create Lambda function
-    ec2_lambda:
-      name: my-lambda-function
-      region: us-east-1
-      runtime: python3.8
-      handler: lambda_function.lambda_handler
-      code: "{{ lookup('file', 'lambda_function.zip') }}"
