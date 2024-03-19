@@ -13,7 +13,7 @@
       group: webserver
       count: 1
       region: eu-central-1
-      security_group: MySecurityGroup
+      security_group: launch-wizard-3
 
     roles:
       - ec2_instance_launch
@@ -21,4 +21,5 @@
       - security_group
       - ecr_setup
       - ecs_setup
+      - lambda_function
 

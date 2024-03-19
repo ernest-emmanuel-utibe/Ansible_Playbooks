@@ -5,7 +5,7 @@
   vars:
     region: eu-central-1  # Corrected region value
     instance_ids:
-      - "i-099b70003f795fe2d"
+      - "i-0ecffa29a925ce6f6"
   tasks:
     - name: Stop the ec2 instances 
       ec2_instance:

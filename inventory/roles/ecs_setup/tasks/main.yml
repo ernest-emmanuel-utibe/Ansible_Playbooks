@@ -1,81 +1,16 @@
-# Note: These examples do not set authentication details, see the AWS Guide for details.
-# Basic provisioning example
-- community.aws.ecs_service:
-    state: present
-    name: console-test-service
-    cluster: new_cluster
-    task_definition: 'new_cluster-task:1'
-    desired_count: 0
-
 - name: create ECS service on VPC network
   community.aws.ecs_service:
     state: present
     name: console-test-service
     cluster: new_cluster
-    task_definition: 'new_cluster-task:1'
+    task_definition: new-cluster-task-defi:3
     desired_count: 0
     network_configuration:
       subnets:
-        - subnet-abcd1234
+        - subnet-00a0d194ae94876ff  # This subnets are defaults
+        - subnet-09536a83ab125e3fc
+        - subnet-0833acf3284c99c74
+
       security_groups:
-        - sg-aaaa1111
-        - my_security_group
-
-# Simple example to delete
-- community.aws.ecs_service:
-    name: default
-    state: absent
-    cluster: new_cluster
-
-# With custom deployment configuration (added in version 2.3), placement constraints and strategy (added in version 2.4)
-- community.aws.ecs_service:
-    state: present
-    name: test-service
-    cluster: test-cluster
-    task_definition: test-task-definition
-    desired_count: 3
-    deployment_configuration:
-      minimum_healthy_percent: 75
-      maximum_percent: 150
-    placement_constraints:
-      - type: memberOf
-        expression: 'attribute:flavor==test'
-    placement_strategy:
-      - type: binpack
-        field: memory
-
-# With deployment circuit breaker (added in version 4.0)
-- community.aws.ecs_service:
-    state: present
-    name: test-service
-    cluster: test-cluster
-    task_definition: test-task-definition
-    desired_count: 3
-    deployment_configuration:
-      deployment_circuit_breaker:
-        enable: true
-        rollback: true
-
-# With capacity_provider_strategy (added in version 4.0)
-- community.aws.ecs_service:
-    state: present
-    name: test-service
-    cluster: test-cluster
-    task_definition: test-task-definition
-    desired_count: 1
-    capacity_provider_strategy:
-      - capacity_provider: test-capacity-provider-1
-        weight: 1
-        base: 0
-
-# With tags and tag propagation
-- community.aws.ecs_service:
-    state: present
-    name: tags-test-service
-    cluster: new_cluster
-    task_definition: 'new_cluster-task:1'
-    desired_count: 1
-    tags:
-      Firstname: jane
-      lastName: doe
-    propagate_tags: SERVICE
+        - sg-076f0593678453608 
+        - sg-0b48d8abddc9d4eea  # Replace this with the correct security group ID
