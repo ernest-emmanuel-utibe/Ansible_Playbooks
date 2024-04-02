@@ -2,7 +2,7 @@
   community.aws.ecs_service:
     state: present
     name: console-test-service
-    cluster: new_cluster
+    cluster: new_cluster_7
     task_definition: new-cluster-task-defi:3
     desired_count: 0
     network_configuration:

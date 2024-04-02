@@ -1,0 +1,73 @@
+---
+# terraform needs a directory to work out of, this step creates that directory.
+- name: setting terraform project
+  file:
+    path: "roles/app/example-{{ item }}"
+    state: directory
+  with_items: "{{ apps }}"
+
+
+# added a check to verify if a file exist before downloading it in the next step.
+- name: checking current terraform from s3
+  aws_s3:
+    bucket: "{{ bucket }}"
+    prefix: "example/{{ item }}/main.tf"
+    mode: list
+  register: terraform_s3
+  with_items: "{{ apps }}"
+
+
+# downloading the file if it does exist, otherwise skipping this step.
+- name: downloading current terraform from s3
+  aws_s3:
+    bucket: "{{ bucket }}"
+    object: "/example/{{ item.item }}/main.tf"
+    dest: "roles/app/example-{{ item.item }}/main.tf"
+    mode: get
+  when: (item.s3_keys | length>0 )
+  with_items: "{{ terraform_s3.results }}"
+
+
+# creating the terraform main.tf from a template and registering if there is any change in the file. this is done for each app.
+- name: setting terraform files
+  template:
+    src: main.tf.j2
+    dest: "roles/app/example-{{ item }}/main.tf"
+  register: terraform_template
+  with_items: "{{ apps }}"
+
+# running an apply on terraform file if there was a change, otherwise skipping. it will only apply on change per app not all or nothing.
+- name: applying terraform
+  terraform:
+    project_path: "roles/app/example-{{ item.item }}/"
+    force_init: yes
+    state: present
+  when: item.changed
+  with_items: "{{ terraform_template.results }}"
+
+# uploading the new terraform file if there was a change, otherwise skipping. it will upload only the file of the app that changed.
+- name: uploading terraform to s3 on change
+  aws_s3:
+    bucket: "{{ bucket }}"
+    object: "/example/{{ item.item }}/main.tf"
+    src: "roles/app/example-{{ item.item }}/main.tf"
+    mode: put
+  when: item.changed
+  with_items: "{{ terraform_template.results }}"
+
+# running terraform init if there was no change. it will do this separately per app.
+- name: running terraform init
+  command: terraform init
+  args:
+    chdir: "roles/app/example-{{ item.item }}/"
+  when: item.changed == false
+  with_items: "{{ terraform_template.results }}"
+
+# registering the service id from the service discovery per app.
+# this is used to add the app container to route53.
+- name: registering terraform service id output
+  command: terraform output
+  args:
+    chdir: "roles/app/example-{{ item }}/"
+  register: terraform_output
+  with_items: "{{ apps }}"

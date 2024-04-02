@@ -1,7 +1,7 @@
 # If the repository does not exist, it is created. If it does exist, would not affect any policies already on it.
 - name: ecr-repo
   community.aws.ecs_ecr:
-    name: creating_repo_using_ansible
+    name: creating_repo_using_ansible_7
 
 # - name: destroy-ecr-repo
 #   community.aws.ecs_ecr:
